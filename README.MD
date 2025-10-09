@@ -284,12 +284,6 @@ Contributions are welcome! Please feel free to submit a Pull Request. For major 
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 📞 Support
-
-- **Issues**: [GitHub Issues](https://github.com/yourusername/comfyui-n-transform-sampler/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/yourusername/comfyui-n-transform-sampler/discussions)
-- **Discord**: ComfyUI Discord server (#custom-nodes channel)
-
 ## 🌟 Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=yourusername/comfyui-n-transform-sampler&type=Date)](https://star-history.com/#yourusername/comfyui-n-transform-sampler&Date)
@@ -316,14 +310,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 *Random transforms with 70% strength*
 
 </details>
-
-## 💬 Testimonials
-
-> "The golden ratio distribution creates the most natural-looking transformations I've seen!" - *ComfyUI User*
-
-> "Finally, precise control over when transforms happen during sampling!" - *AI Artist*
-
-> "The Fibonacci spiral effect is absolutely mesmerizing" - *Creative Developer*
 
 ## 🔗 Links
 
