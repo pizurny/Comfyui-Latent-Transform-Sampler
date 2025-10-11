@@ -1,4 +1,4 @@
-# 🔄 ComfyUI N-Transform Sampler
+# 🔄 ComfyUI Latent Transform Sampler
 
 [![ComfyUI](https://img.shields.io/badge/ComfyUI-Custom%20Node-brightgreen)](https://github.com/comfyanonymous/ComfyUI)
 [![Version](https://img.shields.io/badge/version-3.0.0-blue)](https://github.com/yourusername/comfyui-n-transform-sampler/releases)
