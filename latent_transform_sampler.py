@@ -85,13 +85,13 @@ class NTransformSampler:
                     "random",
                     "manual",
                 ], {
-                    "default": "even",
+                    "default": "manual",
                     "tooltip": "How to distribute transforms across steps"
                 }),
                 
                 # Shift parameters
                 "shift_pixels_x": ("INT", {
-                    "default": 16,
+                    "default": 128,
                     "min": -512,
                     "max": 512,
                     "tooltip": "Horizontal shift in pixels (for shift transform)"
@@ -120,7 +120,7 @@ class NTransformSampler:
                 }),
                 
                 "accumulate_shifts": ("BOOLEAN", {
-                    "default": True,
+                    "default": False,
                     "tooltip": "Whether shifts should accumulate or reset each time"
                 }),
                 
@@ -137,7 +137,7 @@ class NTransformSampler:
                 }),
                 
                 "manual_steps": ("STRING", {
-                    "default": "5,10,15",
+                    "default": "3,6,9",
                     "multiline": False,
                     "tooltip": "Comma-separated step numbers (if distribution='manual')"
                 }),
