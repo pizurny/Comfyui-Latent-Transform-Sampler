@@ -4,7 +4,7 @@ Advanced latent space transformations during diffusion sampling with precise con
 
 ![Demo](demo.gif)
 
-> **Example use with 128 pixel shit at steps 3,6 and 9** 
+> **Example use with 128 pixel shift at steps 3, 6 and 9** 
 
 ## Features
 
