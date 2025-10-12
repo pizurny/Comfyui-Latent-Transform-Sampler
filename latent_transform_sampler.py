@@ -1,7 +1,5 @@
-# Version: 3.0 | Date: 2025-10-06 | Project: N-Transform Sampler | AI: Claude Opus 4.1
-
 """
-N-Transform Sampler for ComfyUI
+Latent Transform Sampler for ComfyUI
 Applies N transformations (shift, mirror, rotate) at strategically distributed steps during sampling.
 Full implementation with all distribution strategies and transform types.
 """
@@ -17,7 +15,7 @@ import comfy.utils
 import comfy.model_management
 import latent_preview
 
-print("[N-Transform Sampler] Loading version 3.0...")
+print("[Latent Transform] Loading version 3.1...")
 
 class NTransformSampler:
     """
@@ -261,7 +259,7 @@ class NTransformSampler:
                 steps = [s for s in steps if 0 <= s < total_steps]
                 return sorted(steps[:n_transforms])
             except:
-                print(f"[N-Transform] Error parsing manual steps, using even distribution")
+                print(f"[Latent Transform] Error parsing manual steps, using even distribution")
                 distribution = "even"
         
         # Single transform optimization
@@ -473,7 +471,7 @@ class NTransformSampler:
             sequence = ["rotate_90_cw", "shift"] * (transform_count // 2 + 1)
         
         if debug_mode:
-            print(f"\n[N-Transform] Configuration:")
+            print(f"\n[Latent Transform] Configuration:")
             print(f"  Transform Count: {transform_count}")
             print(f"  Transform Type: {transform_type}")
             print(f"  Distribution: {distribution}")
@@ -546,14 +544,14 @@ class NTransformSampler:
                     
                     if debug_mode:
                         if current_transform == "shift" and accumulate_shifts:
-                            print(f"[N-Transform] Step {step}: {current_transform} "
+                            print(f"[Latent Transform] Step {step}: {current_transform} "
                                   f"(cumulative: {kwargs['shift_x']}, {kwargs['shift_y']} pixels)")
                         else:
-                            print(f"[N-Transform] Step {step}: {current_transform} "
+                            print(f"[Latent Transform] Step {step}: {current_transform} "
                                   f"(strength: {strength:.2f})")
                 
                 except Exception as e:
-                    print(f"[N-Transform] Error applying {current_transform} at step {step}: {e}")
+                    print(f"[Latent Transform] Error applying {current_transform} at step {step}: {e}")
             
             return x
         
@@ -604,7 +602,7 @@ class NTransformSampler:
         out["samples"] = samples
         
         if debug_mode:
-            print(f"\n[N-Transform] Sampling complete!")
+            print(f"\n[Latent Transform] Sampling complete!")
             print(f"  Applied {len(self.transform_state['applied_transforms'])} transforms")
             if accumulate_shifts and any(t['transform'] == 'shift' for t in self.transform_state['applied_transforms']):
                 print(f"  Final shift: ({self.transform_state['cumulative_shift_x']}, "
@@ -619,7 +617,7 @@ NODE_CLASS_MAPPINGS = {
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
-    "NTransformSampler": "N-Transform Sampler 🔄",
+    "NTransformSampler": "Latent Transform Sampler 🔄",
 }
 
-print("[N-Transform Sampler] Node registered successfully!")
+print("[Latent Transform] Node registered successfully!")
