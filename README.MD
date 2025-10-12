@@ -2,6 +2,10 @@
 
 Advanced latent space transformations during diffusion sampling with precise control over timing and distribution.
 
+![Demo](demo.gif)
+
+> **Example use with SDXLTurbo model** 
+
 ## Features
 
 - **Transform Types**: shift, mirror (H/V), rotate (90°/180°), random, sequences, spiral
