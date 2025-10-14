@@ -16,7 +16,7 @@ Advanced latent space transformations during diffusion sampling with precise con
 
 ```bash
 cd ComfyUI/custom_nodes
-git clone https://github.com/yourusername/comfyui-latent-transform-sampler
+git clone https://github.com/pizurny/comfyui-latent-transform-sampler
 ```
 
 Restart ComfyUI. Find the node under `sampling/transform > Latent Transform Sampler`
