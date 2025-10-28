@@ -1,9 +1,3 @@
-"""
-Latent Transform Sampler for ComfyUI
-Applies N transformations (shift, mirror, rotate) at strategically distributed steps during sampling.
-Full implementation with all distribution strategies and transform types.
-"""
-
 import torch
 import numpy as np
 import random
@@ -15,13 +9,15 @@ import comfy.utils
 import comfy.model_management
 import latent_preview
 
-print("[Latent Transform] Loading version 3.1...")
+print("[Latent Transform] Loading version 3.2...")
 
-class NTransformSampler:
+class LatentTransformSampler:
     """
     Advanced sampler that applies N transformations at distributed intervals.
     Supports shifting, mirroring, and rotation with multiple distribution strategies.
     """
+    
+    DESCRIPTION = "Applies N transformations at distributed intervals during sampling"
     
     def __init__(self):
         self.transform_state = {
@@ -153,7 +149,6 @@ class NTransformSampler:
     RETURN_NAMES = ("samples",)
     FUNCTION = "sample"
     CATEGORY = "sampling/transform"
-    DESCRIPTION = "Applies N transformations at distributed intervals during sampling"
     
     def apply_transform(self, latent: torch.Tensor, transform_type: str, 
                        strength: float = 1.0, **kwargs) -> torch.Tensor:
@@ -166,12 +161,6 @@ class NTransformSampler:
             strength: Strength factor (0-1)
             **kwargs: Additional parameters (shift amounts, etc.)
         """
-        device = latent.device
-        dtype = latent.dtype
-        
-        # Ensure we're working with the right device
-        latent = latent.to(device)
-        
         if transform_type == "shift":
             shift_x = kwargs.get('shift_x', 0)
             shift_y = kwargs.get('shift_y', 0)
@@ -188,7 +177,7 @@ class NTransformSampler:
                 return torch.roll(latent, shifts=(latent_shift_y, latent_shift_x), dims=(2, 3))
         
         elif transform_type == "mirror_horizontal" or transform_type == "mirror_h":
-            if strength >= 0.5:  # Binary operation
+            if strength >= 0.99:  # Binary operation at full strength
                 return torch.flip(latent, dims=[3])
             else:
                 # Gradual blend with original
@@ -196,28 +185,28 @@ class NTransformSampler:
                 return latent * (1 - strength) + flipped * strength
         
         elif transform_type == "mirror_vertical" or transform_type == "mirror_v":
-            if strength >= 0.5:
+            if strength >= 0.99:
                 return torch.flip(latent, dims=[2])
             else:
                 flipped = torch.flip(latent, dims=[2])
                 return latent * (1 - strength) + flipped * strength
         
         elif transform_type == "rotate_90_cw":
-            if strength >= 0.5:
+            if strength >= 0.99:
                 return torch.rot90(latent, k=-1, dims=(2, 3))
             else:
                 rotated = torch.rot90(latent, k=-1, dims=(2, 3))
                 return latent * (1 - strength) + rotated * strength
         
         elif transform_type == "rotate_90_ccw":
-            if strength >= 0.5:
+            if strength >= 0.99:
                 return torch.rot90(latent, k=1, dims=(2, 3))
             else:
                 rotated = torch.rot90(latent, k=1, dims=(2, 3))
                 return latent * (1 - strength) + rotated * strength
         
         elif transform_type == "rotate_180":
-            if strength >= 0.5:
+            if strength >= 0.99:
                 return torch.rot90(latent, k=2, dims=(2, 3))
             else:
                 rotated = torch.rot90(latent, k=2, dims=(2, 3))
@@ -611,13 +600,15 @@ class NTransformSampler:
         return (out,)
 
 
-# Node registration
+# Node registration with BACKWARD COMPATIBILITY
 NODE_CLASS_MAPPINGS = {
-    "NTransformSampler": NTransformSampler,
+    "LatentTransformSampler": LatentTransformSampler,
+    "NTransformSampler": LatentTransformSampler,  # Backward compatibility
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
-    "NTransformSampler": "Latent Transform Sampler 🔄",
+    "LatentTransformSampler": "Latent Transform Sampler 🔄",
+    "NTransformSampler": "Latent Transform Sampler 🔄 (Legacy)",  # Backward compatibility
 }
 
 print("[Latent Transform] Node registered successfully!")

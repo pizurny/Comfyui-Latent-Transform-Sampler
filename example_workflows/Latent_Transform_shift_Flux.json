@@ -240,7 +240,7 @@
     },
     {
       "id": 68,
-      "type": "NTransformSampler",
+      "type": "LatentTransformSampler",
       "pos": [
         1041.4095458984375,
         327.1442565917969
@@ -285,8 +285,8 @@
       ],
       "properties": {
         "aux_id": "pizurny/Comfyui-Latent-Transform-Sampler",
-        "ver": "758de75f2b6e3839c0ec3b20d14a6fc2b14643c4",
-        "Node name for S&R": "NTransformSampler"
+        "ver": "3.2.0",
+        "Node name for S&R": "LatentTransformSampler"
       },
       "widgets_values": [
         42,
@@ -514,10 +514,10 @@
     "info": {
       "name": "workflow",
       "author": "",
-      "description": "",
-      "version": "1",
+      "description": "Updated to use LatentTransformSampler v3.2",
+      "version": "3.2",
       "created": "2024-08-08T23:35:04.124Z",
-      "modified": "2024-08-22T17:59:57.872Z",
+      "modified": "2025-10-28T10:00:00.000Z",
       "software": "ComfyUI"
     },
     "VHS_latentpreview": false,
